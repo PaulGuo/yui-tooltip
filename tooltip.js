@@ -481,7 +481,7 @@ YUI.add('tooltip', function(Y) {
             var CONFIG = that._getCONFIG();
             var closeFn = CONFIG.closeFn;
 
-            that.hide();
+            that.destroy();
             closeFn && closeFn();
             return that;
         },
@@ -491,7 +491,7 @@ YUI.add('tooltip', function(Y) {
             var CONFIG = that._getCONFIG();
             var confirmFn = CONFIG.confirmFn;
 
-            that.hide();
+            that.destroy();
             confirmFn && confirmFn();
             return that;
         },
