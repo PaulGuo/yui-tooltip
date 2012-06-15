@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+    <script src="http://a.tbcdn.cn/??s/kissy/1.1.6/seed-min.js,p/global/1.0/global-min.js,s/kissy/1.1.6/packages/core-min.js,s/yui/3.5.1/build/yui/yui-min.js"></script>
+    <script src="http://a.tbcdn.cn/??apps/et/common/js/trip-config-3.5.1-min.js"></script>
+    <script src="tooltip.js"></script>
+    <link rel="stylesheet" href="tooltip.css" />
+    <!--<link rel="stylesheet" href="http://a.tbcdn.cn/??apps/et/listing-common/css/v1/listingToolTip.css"/>-->
+</head>
+<body>
+
+<style type="text/css">
+	.J_Demo {
+		margin: 0 500px;
+        display: block;
+        width: 15px;
+	}
+
+    .Demo2 {
+        width: 100px;
+        margin-top:20px;
+    }
+    .viewport {
+        width:700px;
+    }
+</style>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<!--<span class="J_Demo">Hover_Me<br />Second_Line. Second_Line. Second_Line.<br />Third_Line.</span>-->
+<div class="viewport">
+    <span class="J_Demo">X</span>
+    <span class="J_Demo Demo2">Hover_Me</span>
+</span>
+
+<script type="text/javascript">
+
+YTRIP.use('tooltip', 'event', function(Y) {
+
+    var tooltip = new Y.Tooltip({
+		position: 'left, left',
+		positionType: 0,
+		maxHeight: 100,
+        width: 200
+	});
+    var node = Y.one('.J_Demo');
+    var node2 = Y.one('.Demo2');
+
+    node.on('mouseover', function() {
+        tooltip.show(node, 'Fuck A ~ <br /> Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ <br /> Fuck C ~', null, {
+            position: 'left-20, auto',
+            positionType: 0,
+            always: 'up'
+        });
+    });
+
+    node.on('mouseout', function() {
+        tooltip.hide();
+    });
+
+    node2.on('mouseover', function() {
+        tooltip.show(node2, 'Fuck A ~ <br /> Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ Fuck B ~ <br /> Fuck C ~ <span class="custom_close">关闭</span>', null, {
+            position: 'bottom+15, auto',
+            positionType: 1,
+            //always: 'right',
+            closeContent: 'X',
+            confirmContent: 'OK',
+            closeFn: function() {
+                alert(1);
+            },
+            confirmFn: function() {
+                alert(2);
+            },
+            closeNode: '.custom_close',
+            referenceHorizons: '.viewport'
+        });
+    });
+
+    node2.on('mouseout', function() {
+        tooltip.hide();
+    });
+    
+});
+
+</script>
+
+</body>
+</html>

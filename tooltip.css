@@ -1,0 +1,116 @@
+
+.hidden {
+    display: none;
+}
+.tooltip {
+    background: none repeat scroll 0 0 #DDDDDD;
+    border: 1px solid #A1A1A1;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 2px 2px #A1A1A1;
+    color: #404040;
+    font: 12px/22px simsun;
+    min-width: 110px;
+    padding-top: 5px;
+    position: absolute;
+    z-index: 1000;
+}
+.tooltip-down {
+    padding-bottom: 5px;
+    padding-top: 0;
+}
+.tooltip-left {
+	padding: 0 0 0 5px;
+}
+.tooltip-right {
+	padding: 0 5px 0 0;
+}
+.tooltip .content-box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 0 0 3px 3px;
+    padding: 10px 15px;
+}
+.tooltip .tooltip-arrow {
+    font-size: 0;
+    height: 11px;
+    line-height: 0;
+    position: absolute;
+    width: 22px;
+}
+.tooltip .tooltip-arrow-up {
+    background: url("T1GEaVXjViXXXXXXXX-30-30.png") no-repeat scroll 0 0 transparent;
+    top: -11px;
+}
+.tooltip .tooltip-arrow-down {
+    background: url("T1GEaVXjViXXXXXXXX-30-30.png") no-repeat scroll 0 -16px transparent;
+    bottom: -11px;
+}
+.tooltip .tooltip-arrow-left {
+    background: url("T1GEaVXjViXXXXXXXX-30-30.png") no-repeat scroll -30px 0 transparent;
+    left: -11px;
+	top: 11px;
+	width: 11px;
+	height: 22px;
+}
+.tooltip .tooltip-arrow-right {
+    background: url("T1GEaVXjViXXXXXXXX-30-30.png") no-repeat scroll -45px 0 transparent;
+    bottom: -11px;
+	width: 11px;
+	height: 22px;
+}
+.tooltip .tooltip-arrow-horizontal-left {
+    left: 20px;
+}
+.tooltip .tooltip-arrow-horizontal-right {
+	right: -11px;
+}
+.tooltip-left .tooltip-arrow-horizontal-left {
+	left: -11px;
+}
+.tooltip-maroon {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-color: maroon;
+    border-radius: 3px 3px 3px 3px;
+    border-right: 1px solid maroon;
+    border-style: solid;
+    border-width: 4px 1px 1px;
+    box-shadow: 0 2px 2px #A1A1A1;
+    font: 12px/22px simsun;
+    padding: 0;
+    position: absolute;
+    width: 450px;
+}
+.tooltip-maroon-down {
+    padding-bottom: 5px;
+    padding-top: 0;
+}
+.tooltip-maroon .content-box {
+    border-radius: 3px 3px 0 0;
+}
+.tooltip-maroon .arrow {
+    border-color: maroon transparent transparent;
+    border-style: solid;
+    border-width: 10px;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    position: absolute;
+    width: 0;
+}
+.tooltip-maroon .arrow-up {
+    border-color: transparent transparent maroon;
+    top: -24px;
+}
+.tooltip-maroon .arrow-down {
+    bottom: -24px;
+}
+.tooltip-maroon .arrow-left {
+    left: 20px;
+}
+.tooltip-maroon .arrow-right {
+    right: 20px;
+}
