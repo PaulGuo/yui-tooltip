@@ -70,8 +70,8 @@ YUI.add('tooltip', function(Y) {
                 maxHeight: 250,
                 hoverSupport: true,
                 positionType: 0,
-				position: 'center, center',
-				referenceHorizons: window,
+                position: 'center, center',
+                referenceHorizons: window,
                 self: null,
                 animation: defaultAnimation,
                 always: null,
@@ -92,12 +92,12 @@ YUI.add('tooltip', function(Y) {
         show: function(targetNode, tipContent, width, opt) {
             opt = opt || {};
 
-			if(targetNode) opt.targetNode = targetNode;
-			if(tipContent) opt.tipContent = tipContent;
-			if(width) opt.width = width;
+            if(targetNode) opt.targetNode = targetNode;
+            if(tipContent) opt.tipContent = tipContent;
+            if(width) opt.width = width;
 
             var that = this;
-			var CONFIG = that._updateCONFIG(opt);
+            var CONFIG = that._updateCONFIG(opt);
             var GUID = that.get('GUID');
             var self = Y.one('#J_Tooltip_' + GUID);
             var body = Y.one('body');
@@ -106,78 +106,78 @@ YUI.add('tooltip', function(Y) {
             var targetNode = CONFIG.targetNode;
             var className = CONFIG.className;
             var positionType = CONFIG.positionType;
-			var position = CONFIG.position.split(',');
-			var referenceHorizons = CONFIG.referenceHorizons;
-			var targetNode = CONFIG.targetNode;
+            var position = CONFIG.position.split(',');
+            var referenceHorizons = CONFIG.referenceHorizons;
+            var targetNode = CONFIG.targetNode;
             var hoverSupport = CONFIG.hoverSupport;
             var animation = CONFIG.animation;
             var always = CONFIG.always;
             var closeNode = CONFIG.closeNode;
             var confirmNode = CONFIG.confirmNode;
-			var arrowNode = self && self.one('em');
-			var arrowWidth, arrowHeight;
-			var targetWidth, targetHeight;
-			var selfWidth, selfHeight;
-			var selfPosition = {};
-			var arrowPosition = {};
-			var targetPosition;
-			var viewportRegion = Y.DOM.viewportRegion(referenceHorizons);
+            var arrowNode = self && self.one('em');
+            var arrowWidth, arrowHeight;
+            var targetWidth, targetHeight;
+            var selfWidth, selfHeight;
+            var selfPosition = {};
+            var arrowPosition = {};
+            var targetPosition;
+            var viewportRegion = Y.DOM.viewportRegion(referenceHorizons);
             var horizonMargin, verticalMargin;
 
-			var touchDimension = function() {
-				arrowWidth = arrowNode.get('region').width;
-				arrowHeight = arrowNode.get('region').height;
-				targetWidth = targetNode.get('region').width;
-				targetHeight = targetNode.get('region').height;
-				selfWidth = self.get('region').width;
-				selfHeight = self.get('region').height;
-				targetPosition = targetNode.getXY();
+            var touchDimension = function() {
+                arrowWidth = arrowNode.get('region').width;
+                arrowHeight = arrowNode.get('region').height;
+                targetWidth = targetNode.get('region').width;
+                targetHeight = targetNode.get('region').height;
+                selfWidth = self.get('region').width;
+                selfHeight = self.get('region').height;
+                targetPosition = targetNode.getXY();
 
                 // white margin initial
 
                 horizonMargin = arrowWidth / 2.5;
                 verticalMargin = arrowHeight / 2.5;
-			};
-			
-			if(!self) {
-				body.append(template);
-				self = Y.one('#J_Tooltip_' + GUID);
-				arrowNode = self.one('em');
+            };
+            
+            if(!self) {
+                body.append(template);
+                self = Y.one('#J_Tooltip_' + GUID);
+                arrowNode = self.one('em');
                 that._updateCONFIG({self: self});
-			}
+            }
 
             self.removeClass('hidden');
 
             that._isHidden = null;
 
-			// setup the maxHeight, if contentHeight higher than tipBox,
-			// then made it scrollable, and set it's height by maxHeight.
+            // setup the maxHeight, if contentHeight higher than tipBox,
+            // then made it scrollable, and set it's height by maxHeight.
 
-			var contentNode = self.one('.content-box');
-			var contentWidth = contentNode.get('region').width;
-			var contentHeight = contentNode.get('region').height;
+            var contentNode = self.one('.content-box');
+            var contentWidth = contentNode.get('region').width;
+            var contentHeight = contentNode.get('region').height;
 
-			if(CONFIG.maxHeight && contentHeight > CONFIG.maxHeight) {
-				contentNode.setStyles({
-					height: CONFIG.maxHeight,
-					overflowY: 'scroll',
-					overflowX: 'hidden'
-				});
-			}
+            if(CONFIG.maxHeight && contentHeight > CONFIG.maxHeight) {
+                contentNode.setStyles({
+                    height: CONFIG.maxHeight,
+                    overflowY: 'scroll',
+                    overflowX: 'hidden'
+                });
+            }
 
             // hover support
 
-			if(hoverSupport) {
+            if(hoverSupport) {
                 self.detach('hoverSupport');
 
-				self.on('hoverSupport|mouseover', function() {
-					that._isMouseHover = true;
-				});
+                self.on('hoverSupport|mouseover', function() {
+                    that._isMouseHover = true;
+                });
 
-				self.on('hoverSupport|mouseout', function() {
-					that._isMouseHover = false;
-				});
-			}
+                self.on('hoverSupport|mouseout', function() {
+                    that._isMouseHover = false;
+                });
+            }
 
             // reset tooltip classname
 
@@ -278,11 +278,11 @@ YUI.add('tooltip', function(Y) {
                     }
                 };
 
-				self.replaceClass(className + '-down', className + '-up');
-				arrowNode.replaceClass('tooltip-arrow-down', 'tooltip-arrow-up');
-				arrowNode.replaceClass('tooltip-arrow-horizontal-right', 'tooltip-arrow-horizontal-left');
+                self.replaceClass(className + '-down', className + '-up');
+                arrowNode.replaceClass('tooltip-arrow-down', 'tooltip-arrow-up');
+                arrowNode.replaceClass('tooltip-arrow-horizontal-right', 'tooltip-arrow-horizontal-left');
 
-				touchDimension();
+                touchDimension();
                 horizonAnalyze(position);
 
                 if(selfPosition.left + selfWidth > viewportRegion.right) {
@@ -301,13 +301,13 @@ YUI.add('tooltip', function(Y) {
                     horizonAnalyze([position[0], 'center']);
                 }
 
-				self.setStyles(selfPosition);
-				arrowNode.setStyles(arrowPosition);
+                self.setStyles(selfPosition);
+                arrowNode.setStyles(arrowPosition);
             }
 
             /*
                 NODE <-------
-				      | TIP |
+                      | TIP |
                       -------
             */
 
@@ -383,16 +383,16 @@ YUI.add('tooltip', function(Y) {
                     }
                 };
 
-				self.replaceClass(className + '-right', className + '-left');
-				arrowNode.replaceClass('tooltip-arrow-right', 'tooltip-arrow-left');
-				arrowNode.replaceClass('tooltip-arrow-horizontal-right', 'tooltip-arrow-horizontal-left');
+                self.replaceClass(className + '-right', className + '-left');
+                arrowNode.replaceClass('tooltip-arrow-right', 'tooltip-arrow-left');
+                arrowNode.replaceClass('tooltip-arrow-horizontal-right', 'tooltip-arrow-horizontal-left');
 
-				touchDimension();
+                touchDimension();
                 verticalAnalyze(position);
 
-				if(selfPosition.top + selfHeight > viewportRegion.bottom) {
+                if(selfPosition.top + selfHeight > viewportRegion.bottom) {
                     verticalAnalyze(['bottom', position[1]]);
-				}
+                }
 
                 if(selfPosition.top < viewportRegion.top) {
                     verticalAnalyze(['top', position[1]]);
@@ -406,15 +406,15 @@ YUI.add('tooltip', function(Y) {
                     verticalAnalyze([position[0], 'middle']);
                 }
 
-				self.setStyles(selfPosition);
-				arrowNode.setStyles(arrowPosition);
+                self.setStyles(selfPosition);
+                arrowNode.setStyles(arrowPosition);
             }
 
-			// added iframe shim for select bug under IE6
+            // added iframe shim for select bug under IE6
 
-			if(isIE6) {
-				that._addShim(self);
-			}
+            if(isIE6) {
+                that._addShim(self);
+            }
 
             // bind event
 
@@ -467,13 +467,13 @@ YUI.add('tooltip', function(Y) {
                     return;
                 }
             }
-			
-			if(self) self.addClass('hidden');
-			if(shim) shim.addClass('hidden');
-			that._isHidden = true;
+            
+            if(self) self.addClass('hidden');
+            if(shim) shim.addClass('hidden');
+            that._isHidden = true;
             that.destroy();
 
-			return that;
+            return that;
         },
 
         close: function() {
@@ -522,34 +522,34 @@ YUI.add('tooltip', function(Y) {
             return that.getAttrs();
         },
 
-		_addShim: function(referenceNode) {
-			var that = this;
-			var CONFIG = that._getCONFIG();
+        _addShim: function(referenceNode) {
+            var that = this;
+            var CONFIG = that._getCONFIG();
             var GUID = that.get('GUID');
-			var shim = Y.one('#J_TooltipShim' + GUID);
-			
-			if(!shim) {
-				shim = document.createElement('IFRAME');
-				shim.className = 'TooltipShim hidden';
-				shim.style.position = 'absolute';
-				shim.style.border = '0';
-				shim.frameborder = '0';
-				shim.id = 'J_TooltipShim' + GUID;
-			}
-			
-			referenceNode.insert(shim, 'before');
-			shim = Y.one('#J_TooltipShim' + GUID);
-			that._updateCONFIG({shim: shim});
-			
-			shim.setStyles({
-				top: referenceNode.getY(),
-				left: referenceNode.getX(),
-				width: referenceNode.get('region').width,
-				height: referenceNode.get('region').height
-			}).removeClass('hidden');
+            var shim = Y.one('#J_TooltipShim' + GUID);
+            
+            if(!shim) {
+                shim = document.createElement('IFRAME');
+                shim.className = 'TooltipShim hidden';
+                shim.style.position = 'absolute';
+                shim.style.border = '0';
+                shim.frameborder = '0';
+                shim.id = 'J_TooltipShim' + GUID;
+            }
+            
+            referenceNode.insert(shim, 'before');
+            shim = Y.one('#J_TooltipShim' + GUID);
+            that._updateCONFIG({shim: shim});
+            
+            shim.setStyles({
+                top: referenceNode.getY(),
+                left: referenceNode.getX(),
+                width: referenceNode.get('region').width,
+                height: referenceNode.get('region').height
+            }).removeClass('hidden');
 
-			return that;
-		}
+            return that;
+        }
     });
 
     Y.Tooltip = Tooltip;
