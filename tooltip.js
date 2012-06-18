@@ -269,7 +269,7 @@ YUI.add('tooltip', function(Y) {
                         }
                     }
 
-                    if(selfPosition.top + selfHeight > viewportRegion.height || always === 'down') {
+                    if(selfPosition.top + selfHeight > viewportRegion.bottom || always === 'down') {
                         if(always != 'up') {
                             selfPosition.top = targetPosition[1] - selfHeight - arrowHeight;
                             self.replaceClass(className + '-up', className + '-down');
