@@ -506,7 +506,7 @@ YUI.add('tooltip', function(Y) {
             if(shim) shim.remove();
         },
 
-        set: function(CONFIG) {
+        setConfig: function(CONFIG) {
             var that = this;
 
             return that._updateCONFIG(CONFIG);
