@@ -482,7 +482,7 @@ YUI.add('tooltip', function(Y) {
             var closeFn = CONFIG.closeFn;
 
             that.destroy();
-            closeFn && closeFn();
+            closeFn && closeFn.call(this);
             return that;
         },
 
@@ -492,7 +492,7 @@ YUI.add('tooltip', function(Y) {
             var confirmFn = CONFIG.confirmFn;
 
             that.destroy();
-            confirmFn && confirmFn();
+            confirmFn && confirmFn.call(this);
             return that;
         },
 
@@ -504,6 +504,12 @@ YUI.add('tooltip', function(Y) {
 
             if(self) self.remove();
             if(shim) shim.remove();
+        },
+
+        set: function(CONFIG) {
+            var that = this;
+
+            return that._updateCONFIG(CONFIG);
         },
         
         _updateCONFIG: function(CONFIG) {
