@@ -96,6 +96,8 @@ YUI.add('tooltip', function(Y) {
             if(tipContent) opt.tipContent = tipContent;
             if(width) opt.width = width;
 
+            this.destroy();
+
             var that = this;
             var CONFIG = that._updateCONFIG(opt);
             var GUID = that.get('GUID');
