@@ -149,6 +149,7 @@ YUI.add('tooltip', function(Y) {
             self.removeClass('hidden');
 
             that._isHidden = null;
+            that._timer && clearTimeout(that._timer);
 
             // setup the maxHeight, if contentHeight higher than tipBox,
             // then made it scrollable, and set it's height by maxHeight.
