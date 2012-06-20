@@ -82,7 +82,8 @@ YUI.add('tooltip', function(Y) {
 
                 GUID: GUID,
                 TPL: TPL,
-                IE6TPL: IE6TPL
+                IE6TPL: IE6TPL,
+                SELF_UID: '#J_Tooltip_' + GUID
             };
 
             CONFIG = Y.merge(CONFIG, userCONFIG);
@@ -152,6 +153,10 @@ YUI.add('tooltip', function(Y) {
 
             that._isHidden = null;
             that._timer && clearTimeout(that._timer);
+
+            // update CONFIG to store self [ Node instance ]
+
+            that._updateCONFIG({self: self});
 
             // setup the maxHeight, if contentHeight higher than tipBox,
             // then made it scrollable, and set it's height by maxHeight.
@@ -507,6 +512,11 @@ YUI.add('tooltip', function(Y) {
 
             if(self) self.remove();
             if(shim) shim.remove();
+
+            // update CONFIG to destroy 
+            // self [ Node instance ]
+
+            that._updateCONFIG({self: null});
         },
 
         setConfig: function(CONFIG) {
