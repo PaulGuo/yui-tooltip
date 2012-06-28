@@ -434,7 +434,7 @@ YUI.add('tooltip', function(Y) {
 
             // animation
 
-            if(animation) {
+            if(animation && !isIE6) {
                 var endFunction = function() {
                     if(that._isHidden) that.hide.apply(that, arguments);
                 };
