@@ -126,6 +126,7 @@ YUI.add('tooltip', function(Y) {
             var targetPosition;
             var viewportRegion = Y.DOM.viewportRegion(referenceHorizons);
             var horizonMargin, verticalMargin;
+            var _window = Y.one(window);
 
             var touchDimension = function() {
                 arrowWidth = arrowNode.get('region').width;
@@ -431,6 +432,12 @@ YUI.add('tooltip', function(Y) {
 
             if(closeNode) self.all(closeNode).detach().on('customButton|click', that.close, that);
             if(confirmNode) self.all(confirmNode).detach().on('customButton|click', that.confirm, that);
+
+            if(!that.resizeHandler) {
+                that.resizeHandler = _window.on('resize', function() {
+                    !that._isHidden && that.show();
+                });
+            }
 
             // animation
 
