@@ -605,6 +605,7 @@ YUI.add('tooltip', function(Y) {
             // self [ Node instance ]
 
             that._updateCONFIG({self: null});
+            that._isHidden = true;
         },
 
         setConfig: function(CONFIG) {
