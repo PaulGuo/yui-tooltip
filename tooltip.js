@@ -207,6 +207,87 @@ YUI.add('tooltip', function(Y) {
 
             resetStyles();
 
+            // reset tooltip classname
+
+            var resetStyles = function() {
+                self.removeClass(className + '-up');
+                self.removeClass(className + '-down');
+                self.removeClass(className + '-left');
+                self.removeClass(className + '-right');
+                self.setStyles({top: null, left: null});
+                arrowNode.removeClass('tooltip-arrow-up');
+                arrowNode.removeClass('tooltip-arrow-down');
+                arrowNode.removeClass('tooltip-arrow-left');
+                arrowNode.removeClass('tooltip-arrow-right');
+                arrowNode.removeClass('tooltip-arrow-horizontal-left');
+                arrowNode.removeClass('tooltip-arrow-horizontal-right');
+                arrowNode.setStyles({top: null, left: null});
+            };
+
+            resetStyles();
+
+            // auto-analyze and reset position
+
+            var resetPosition = function(oPos, nPos, positionType) {
+                var revertMark = false;
+                var holdMark = false;
+
+                if(positionType === 0) {
+                    if(oPos.match(/left[\+\-]*/i) && nPos === 'right') {
+                        revertMark = true;
+                    }
+
+                    if(oPos.match(/right[\+\-]*/i) && nPos === 'left') {
+                        revertMark = true;
+                    }
+
+                    if(oPos.match(/left[\+\-]*/i) && nPos === 'left') {
+                        holdMark = true;
+                    }
+
+                    if(oPos.match(/right[\+\-]*/i) && nPos === 'right') {
+                        holdMark = true;
+                    }
+                }
+
+                if(positionType === 1) {
+                    if(oPos.match(/top[\+\-]*/i) && nPos === 'bottom') {
+                        revertMark = true;
+                    }
+
+                    if(oPos.match(/bottom[\+\-]*/i) && nPos === 'top') {
+                        revertMark = true;
+                    }
+
+                    if(oPos.match(/bottom[\+\-]*/i) && nPos === 'bottom') {
+                        holdMark = true;
+                    }
+
+                    if(oPos.match(/top[\+\-]*/i) && nPos === 'top') {
+                        holdMark = true;
+                    }
+                }
+
+                if(revertMark) {
+                    return oPos.replace(/(\w+)([\+\-]*)/i, function($, $1, $2) {
+                        $2 = $2.replace(/^.*$/i, function($) {
+                            if($ === '+') return '-';
+                            if($ === '-') return '+';
+
+                            return $;
+                        });
+
+                        return nPos + $2;
+                    });
+                }
+
+                if(holdMark) {
+                    return oPos.replace(/\w+/i, nPos);
+                }
+
+                return nPos;
+            };
+
             /*
                 NODE
                 ^
@@ -295,11 +376,11 @@ YUI.add('tooltip', function(Y) {
                 horizonAnalyze(position);
 
                 if(selfPosition.left + selfWidth > viewportRegion.right) {
-                    horizonAnalyze(['right' , position[1]]);
+                    horizonAnalyze([resetPosition(position[0], 'right', positionType), position[1]]);
                 }
 
                 if(selfPosition.left < viewportRegion.left) {
-                    horizonAnalyze(['left' , position[1]]);
+                    horizonAnalyze([resetPosition(position[0], 'left', positionType), position[1]]);
                 }
 
                 if(arrowPosition.left > selfWidth - arrowWidth) {
@@ -400,11 +481,11 @@ YUI.add('tooltip', function(Y) {
                 verticalAnalyze(position);
 
                 if(selfPosition.top + selfHeight > viewportRegion.bottom) {
-                    verticalAnalyze(['bottom', position[1]]);
+                    verticalAnalyze([resetPosition(position[0], 'bottom', positionType), position[1]]);
                 }
 
                 if(selfPosition.top < viewportRegion.top) {
-                    verticalAnalyze(['top', position[1]]);
+                    verticalAnalyze([resetPosition(position[0], 'top', positionType), position[1]]);
                 }
 
                 if(arrowPosition.top > selfHeight - arrowHeight) {
