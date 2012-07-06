@@ -117,6 +117,7 @@ YUI.add('tooltip', function(Y) {
             var always = CONFIG.always;
             var closeNode = CONFIG.closeNode;
             var confirmNode = CONFIG.confirmNode;
+            var boundaryDectection = CONFIG.boundaryDectection;
             var arrowNode = self && self.one('em');
             var arrowWidth, arrowHeight;
             var targetWidth, targetHeight;
@@ -375,12 +376,14 @@ YUI.add('tooltip', function(Y) {
                 touchDimension();
                 horizonAnalyze(position);
 
-                if(selfPosition.left + selfWidth > viewportRegion.right) {
-                    horizonAnalyze([resetPosition(position[0], 'right', positionType), position[1]]);
-                }
+                if(boundaryDectection) {
+                    if(selfPosition.left + selfWidth > viewportRegion.right) {
+                        horizonAnalyze([resetPosition(position[0], 'right', positionType), position[1]]);
+                    }
 
-                if(selfPosition.left < viewportRegion.left) {
-                    horizonAnalyze([resetPosition(position[0], 'left', positionType), position[1]]);
+                    if(selfPosition.left < viewportRegion.left) {
+                        horizonAnalyze([resetPosition(position[0], 'left', positionType), position[1]]);
+                    }
                 }
 
                 if(arrowPosition.left > selfWidth - arrowWidth) {
@@ -480,12 +483,14 @@ YUI.add('tooltip', function(Y) {
                 touchDimension();
                 verticalAnalyze(position);
 
-                if(selfPosition.top + selfHeight > viewportRegion.bottom) {
-                    verticalAnalyze([resetPosition(position[0], 'bottom', positionType), position[1]]);
-                }
+                if(boundaryDectection) {
+                    if(selfPosition.top + selfHeight > viewportRegion.bottom) {
+                        verticalAnalyze([resetPosition(position[0], 'bottom', positionType), position[1]]);
+                    }
 
-                if(selfPosition.top < viewportRegion.top) {
-                    verticalAnalyze([resetPosition(position[0], 'top', positionType), position[1]]);
+                    if(selfPosition.top < viewportRegion.top) {
+                        verticalAnalyze([resetPosition(position[0], 'top', positionType), position[1]]);
+                    }
                 }
 
                 if(arrowPosition.top > selfHeight - arrowHeight) {
