@@ -521,7 +521,10 @@ YUI.add('tooltip', function(Y) {
 
             if(!that.resizeHandler) {
                 that.resizeHandler = _window.on('resize', function() {
-                    !that._isHidden && that.show();
+                    // using settimeout to making love with ie6
+                    !that._isHidden && setTimeout(function() {
+                        that.show();
+                    }, 0);
                 });
             }
 
